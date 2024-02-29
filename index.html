@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    <div id="stockData"></div>
+    <script>
+        function getStockData() {
+            const apiKey = 'cngdmc1r01qq9hn8ub90cngdmc1r01qq9hn8ub9g';
+            const symbol = 'AMZN'; 
+            fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`)
+            .then(response => response.json())
+            .then(data => {     
+                const stockDataElement = document.getElementById('stockData');
+                stockDataElement.innerHTML = `
+                    <p> $${data.c}</p>`;
+            })
+            .catch(error => {
+                console.error('ur gay', error);
+            });
+        }
+        window.onload = getStockData;
+    </script>
+</body>
+</html>
